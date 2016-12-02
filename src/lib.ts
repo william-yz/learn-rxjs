@@ -5,7 +5,7 @@ import { retry } from 'rxjs/operator/retry';
 let dbIndex = 0
 const searchStorage = new Map<number, string>()
 
-export interface PostResponse {
+export interface HttpResponse {
   _id: number
   value: string
 }
@@ -34,8 +34,8 @@ export const search = (inputValue: string): Observable<string | null> => {
   })
 }
 
-export const mockHttpPost = (value: string): Observable<PostResponse> => {
-  return Observable.create((observer: Observer<PostResponse>) => {
+export const mockHttpPost = (value: string): Observable<HttpResponse> => {
+  return Observable.create((observer: Observer<HttpResponse>) => {
     const timmer = setTimeout(() => {
       const result = {
         _id: ++dbIndex, value
@@ -63,4 +63,17 @@ export const mockDelete = (id: number): Observable<boolean> => {
       console.warn('post canceled')
     }
   })
+}
+
+export const createTodoItem = (data: HttpResponse) => {
+  const result = <HTMLLIElement>document.createElement('LI')
+  result.classList.add('list-group-item')
+  const innerHTML = `
+    ${data.value}
+    <button type="button" class="btn btn-default button-remove" aria-label="right Align">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+  `
+  result.innerHTML = innerHTML
+  return result
 }
