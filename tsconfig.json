@@ -2,19 +2,22 @@
   "compilerOptions": {
     "target": "ES6",
     "inlineSourceMap": true,
+    "rootDir": "src",
     "outDir": "dist",
+    "watch": true,
     "module": "commonjs",
     "typeRoots": [
       "node_modules/@types"
     ],
     "types": [
-      "node",
-      "jquery"
+      "node"
     ]
   },
   "exclude": [
     "node_modules",
     "dist"
   ],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "sourseMap": true
 }
+
