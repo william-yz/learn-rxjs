@@ -16,8 +16,11 @@ var numbers = Rx.Observable.interval(1000);
 numbers.subscribe(x => console.log(x));
 
 
-var numbers = Rx.Observable.of(10, 20, 30);
+var numbers = Rx.Observable.of({a:1}, {a:2});
 var letters = Rx.Observable.of('a', 'b', 'c');
-var interval = Rx.Observable.interval(1000);
-var result = numbers.concat(letters).concat(interval);
+
+numbers.subscribe(console.log)
+letters.subscribe(console.log)
+
+var result = numbers.concat(letters);
 result.subscribe(x => console.log(x));
